@@ -29,3 +29,19 @@ resource "snowflake_schema" "demo_schema" {
   comment  = "Schema for Snowflake Terraform demo"
 }
 
+resource "snowflake_table" "demo_table" {
+  database = snowflake_database.demo_db.name
+  schema   = snowflake_schema.demo_schema.name
+  name     = "DEMO_TABLE"
+  comment  = "Table for Snowflake Terraform demo"
+
+  column {
+    name = "id"
+    type = "NUMBER(38,0)"
+  }
+
+  column {
+    name = "name"
+    type = "VARCHAR(256)"
+  }
+}
